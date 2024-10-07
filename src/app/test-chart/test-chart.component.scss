@@ -1,0 +1,36 @@
+.kpi-layout {
+    display: flex;
+    flex-direction: column; /* Allow vertical stacking */
+  }
+  
+  .kpi-data-and-graph {
+    display: flex; /* Make the table and graph sit side by side */
+    justify-content: space-between; /* Distribute space */
+    margin-bottom: 20px;
+  }
+  
+  .kpi-data {
+
+    flex: 1; /* Allow table to take half of the space */
+    padding-right: 10px; /* Add spacing between table and graph */
+  }
+
+  
+  .table thead th{
+    font-weight: bold; 
+    background-color: #f8f9fa; 
+    color: #333; 
+    
+    border-bottom: 2px solid #dee2e6;
+  }
+  .kpi-graph-right {
+    flex: 1; /* Allow graph to take half of the space */
+    min-width: 500px; /* Minimum width for the graph */
+  }
+  
+  .kpi-graph-bottom {
+    margin-top: 20px;
+    min-height: 300px; /* Ensure there is height for the bottom graph */
+  }
+  
+

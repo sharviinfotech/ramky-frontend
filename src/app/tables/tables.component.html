@@ -1,0 +1,1230 @@
+<!-- <div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Sales Order Data</h4>
+            <p class="category">Detailed information on sales orders</p>
+          </div>
+          <div class="content table-responsive table-full-width">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th *ngFor="let header of tableData1.headerRow">
+                    {{ header }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of tableData1.dataRows">
+                  <td *ngFor="let cell of row">{{ cell }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- <div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Sales Revenue Data</h4>
+            <p class="category">Here is the sales revenue information</p>
+          </div>
+          <div class="content table-responsive table-full-width table-wrapper">
+            <div class="table-scrollable">
+              <table class="table table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th *ngFor="let header of tableData1.headerRow">
+                      {{ header }}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of tableData1.dataRows">
+                    <td *ngFor="let cell of row">{{ cell }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Sales Revenue Data</h4>
+            <p class="category">Here is the sales revenue information</p>
+          </div>
+          <div class="content table-responsive table-full-width table-wrapper">
+            <div *ngIf="!tableData1.dataRows.length">
+              <p>No sales data available.</p>
+            </div>
+            <div *ngIf="tableData1.dataRows.length" class="table-scrollable">
+              <table class="table table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th *ngFor="let header of tableData1.headerRow">
+                      {{ header }}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of tableData1.dataRows">
+                    <td *ngFor="let cell of row">{{ cell }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="row">
+  <!-- sales-report.component.html -->
+  <div class="sidebar">
+    <app-sidebar (dateRangeChange)="onDateRangeChange($event)"></app-sidebar>
+  </div>
+
+  <div class="main-panel">
+    <nav
+      class="navbar navbar-default"
+      style="
+        background-color: rgb(0, 114, 206);
+        color: white;
+        border-bottom: 2px solid #f0f0f0;
+        padding: 15px;
+      "
+    >
+      <div class="container-fluid">
+        <!-- Replacing content with header -->
+        <div
+          class="header"
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <h1 style="font-size: 24px; color: white; margin: 0">
+            Sales Dashboard
+          </h1>
+        </div>
+        <!-- Buttons with inline styles -->
+        <button
+          class="btn"
+          style="
+            background-color: skyblue;
+            border: 1px solid navy;
+            font-weight: bold;
+            color: navy;
+            padding: 10px 20px;
+            font-size: 14px;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+          "
+          (click)="showChart('sales')"
+        >
+          Period wise Sales
+        </button>
+        <button
+          class="btn"
+          style="
+            background-color: skyblue;
+            border: 1px solid navy;
+            color: navy;
+            font-weight: bold;
+            padding: 10px 20px;
+            font-size: 14px;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+          "
+          (click)="showChart('cancellations')"
+        >
+          Cancellations
+        </button>
+        <button
+          class="btn"
+          style="
+            background-color: skyblue;
+            border: 1px solid navy;
+            color: navy;
+            font-weight: bold;
+            padding: 10px 20px;
+            font-size: 14px;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+          "
+          (click)="showChart('saleType')"
+        >
+          Sale Type
+        </button>
+        <button
+          class="btn"
+          style="
+            background-color: skyblue;
+            border: 1px solid navy;
+            color: navy;
+            font-weight: bold;
+            padding: 10px 20px;
+            font-size: 14px;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+          "
+          (click)="showChart('bookingsource')"
+        >
+          Booking source
+        </button>
+        <button
+          class="btn"
+          style="
+            background-color: skyblue;
+            border: 1px solid navy;
+            color: navy;
+            font-weight: bold;
+            padding: 10px 20px;
+            font-size: 14px;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+          "
+          (click)="showChart('materialgroup')"
+        >
+          Material Group
+        </button>
+        <button
+          class="btn"
+          style="
+            background-color: skyblue;
+            border: 1px solid navy;
+            color: navy;
+            font-weight: bold;
+            padding: 10px 20px;
+            font-size: 14px;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+          "
+          (click)="showChart('area')"
+        >
+          Area
+        </button>
+        <button
+          class="btn"
+          style="
+            background-color: skyblue;
+            border: 1px solid navy;
+            color: navy;
+            font-weight: bold;
+            padding: 10px 20px;
+            font-size: 14px;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+          "
+          (click)="showChart('materialgroup3')"
+        >
+          Material Group 3
+        </button>
+        <button
+          class="btn"
+          style="
+            background-color: skyblue;
+            border: 1px solid navy;
+            color: navy;
+            font-weight: bold;
+            padding: 10px 20px;
+            font-size: 14px;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+          "
+          (click)="showChart('performance')"
+        >
+          Performance
+        </button>
+        <button
+          class="btn"
+          style="
+            background-color: skyblue;
+            border: 1px solid navy;
+            color: navy;
+            font-weight: bold;
+            padding: 10px 20px;
+            font-size: 14px;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+          "
+          (click)="showChart('channel')"
+        >
+          Channel
+        </button>
+      </div>
+    </nav>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <button
+            (click)="toggleReport()"
+            style="
+              background-color: orangered;
+              border: 1px solid #ddd;
+              color: white;
+              padding: 10px 20px;
+              font-size: 14px;
+              margin-left: 10px;
+              border-radius: 5px;
+              cursor: pointer;
+            "
+          >
+            Hide Report
+          </button>
+          <button
+            (click)="toggleFilter()"
+            style="
+              background-color: green;
+              border: 1px solid #ddd;
+              color: white;
+              padding: 10px 20px;
+              font-size: 14px;
+              margin-left: 10px;
+              border-radius: 5px;
+              cursor: pointer;
+            "
+          >
+            Filter
+          </button>
+
+          <div class="header">
+            <p class="category" style="color: black; font-weight: bold">
+              Enter details to fetch the sales revenue information
+            </p>
+          </div>
+          <div class="content">
+            <!-- Form for input -->
+            <form [formGroup]="salesForm" (ngSubmit)="fetchSalesData()">
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="form-field">
+                    <label style="color: black">Sales Office:</label>
+                    <input
+                      type="text"
+                      formControlName="vkbur"
+                      placeholder="Enter Sales Office"
+                    />
+                  </div>
+
+                  <div class="form-field">
+                    <label style="color: black">Sales Organization:</label>
+                    <input
+                      type="text"
+                      formControlName="vkorg"
+                      placeholder="Enter Sales Organization"
+                    />
+                  </div>
+
+                  <div class="form-field">
+                    <label style="color: black">Sales Order:</label>
+                    <input
+                      type="text"
+                      formControlName="vbeln"
+                      placeholder="Enter Sales Order"
+                    />
+                  </div>
+
+                  <div class="form-field">
+                    <label style="color: black">Customer Code:</label>
+                    <input
+                      type="text"
+                      formControlName="kunnr"
+                      placeholder="Enter Customer code"
+                    />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-field">
+                    <label style="color: black">Material:</label>
+                    <input
+                      type="text"
+                      formControlName="matnr"
+                      placeholder="Enter Material"
+                    />
+                  </div>
+
+                  <div class="form-field">
+                    <label style="color: black">Document Date:</label>
+                    <input
+                      type="text"
+                      formControlName="budat"
+                      placeholder="Enter Document Date"
+                    />
+                  </div>
+
+                  <div class="form-field">
+                    <label style="color: black">Sales Document Type:</label>
+                    <input
+                      type="text"
+                      formControlName="auart"
+                      placeholder="Enter Document Type"
+                    />
+                  </div>
+                  <div class="form-field">
+                    <button type="submit">Get Sales Data</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Add inputs for other fields as needed -->
+            </form>
+          </div>
+
+          <!-- <div *ngIf="!salesData.length">
+              <p>Loading...</p>
+            </div> -->
+          <div *ngIf="isReportVisible">
+            <div
+              *ngIf="salesData.length"
+              style="
+                max-height: 400px;
+                overflow-y: auto;
+                overflow-x: auto;
+                display: hidden;
+              "
+            >
+              <table class="table table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th>Sales Order</th>
+                    <th>Sales Office</th>
+                    <th>Sales Office Name</th>
+                    <th></th>
+                    <th>Sales Document Type</th>
+                    <th>Document Date</th>
+                    <th>Created Date</th>
+                    <th>Pricing Date</th>
+                    <th>Customer Code</th>
+                    <th>Customer Name</th>
+                    <th>Reason for Rejection</th>
+                    <th>Material</th>
+                    <th>Unit Area</th>
+                    <th>UOM</th>
+                    <th>Sales Group</th>
+                    <th>Sales Group Name</th>
+                    <th>Sales Executive</th>
+                    <th>Service Tax</th>
+                    <th>VAT</th>
+                    <th>TDS</th>
+                    <th>KKC</th>
+                    <th>SBC</th>
+                    <th>IGST</th>
+                    <th>CGST</th>
+                    <th>SGST</th>
+                    <th>UGST</th>
+                    <th>Car Parking No.</th>
+                    <th>PO Number</th>
+                    <th>Development Charges</th>
+                    <th>Base Price</th>
+                    <th>UDS Value</th>
+                    <th>Special Discount</th>
+                    <th>Base Price (Db/Cr)</th>
+                    <th>Amenities</th>
+                    <th>Free Car Parking</th>
+                    <th>Base Cancellation</th>
+                    <th>Club House</th>
+                    <th>Pre-EMI</th>
+                    <th>PLC Value</th>
+                    <th>Floor Rise</th>
+                    <th>Terrace Area Premium</th>
+                    <th>Terrace View Premium</th>
+                    <th>Transfer Charges (De)</th>
+                    <th>Transfer Charges (Ad)</th>
+                    <th>Water Charges</th>
+                    <th>Main Material</th>
+                    <th>Material Group</th>
+                    <th>Material Group 1</th>
+                    <th>Material Group 2</th>
+                    <th>Material Group 3</th>
+                    <th>Main WBS Element</th>
+                    <th>Legal Charges</th>
+                    <th>Corpus Fund</th>
+                    <th>Adv. Maintenance</th>
+                    <th>Paid Car Parking</th>
+                    <th>Water Charges</th>
+                    <th>Electricity Charge</th>
+                    <th>Elec & Wat Charge</th>
+                    <th>Modifications</th>
+                    <th>SO Value</th>
+                    <th>Amount Invoiced</th>
+                    <th>% Amount Invoiced</th>
+                    <th>Amount Received</th>
+                    <th>Balance Amount</th>
+                    <th>Source of Booking</th>
+                    <th>Referer Name</th>
+                    <th>Schemes</th>
+                    <th>Sale Type</th>
+                    <th>Booking Date</th>
+                    <th>Customer PAN</th>
+                    <th>Channel Partner</th>
+                    <th>CO Applicant</th>
+                    <th>CO Applicant PAN</th>
+                    <th>Loan Bank</th>
+                    <th>Channel(Ramky DSA/Other)</th>
+                    <th>Sanctioned Amount</th>
+                    <th>Loan Number</th>
+                    <th>Sanctioned Date</th>
+                    <th>Agreement Date</th>
+                    <th>Registration Date</th>
+                    <th>Hand over Date</th>
+                    <th>Sale Deed No</th>
+                    <th>Aadhar No</th>
+                    <th>Booking From</th>
+                    <th>Agreement of Sale</th>
+                    <th>Sale Deed</th>
+                    <th>Any other Document</th>
+                    <th>Handover/Posession</th>
+                    <th>Customer ID Proofs</th>
+                    <th>Sale Deed ACK</th>
+                    <th>TPT & NOC</th>
+                    <th>Sanction</th>
+                    <th>Loan App</th>
+                    <th>Int. Delayed. Payment</th>
+                    <th>Transfer Fee</th>
+                    <th>Cancellation Charge</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of salesData">
+                    <td>{{ item.VBELN }}</td>
+                    <td>{{ item.VKBUR }}</td>
+                    <td>{{ item.BEZEI_S }}</td>
+                    <td>{{ item.ROWCL }}</td>
+                    <td>{{ item.AUART }}</td>
+                    <td>{{ item.AUDAT }}</td>
+                    <td>{{ item.ERDAT }}</td>
+                    <td>{{ item.PRSDT }}</td>
+                    <td>{{ item.KUNNR }}</td>
+                    <td>{{ item.NAME1 }}</td>
+                    <td>{{ item.REASON }}</td>
+                    <td>{{ item.MATNR }}</td>
+                    <td>{{ item.UMREN }}</td>
+                    <td>{{ item.UOM }}</td>
+                    <td>{{ item.VKGRP }}</td>
+                    <td>{{ item.BEZEI }}</td>
+                    <td>{{ item.SALE_EXE }}</td>
+                    <td>{{ item.TAX1 }}</td>
+                    <td>{{ item.TAX2 }}</td>
+                    <td>{{ item.TAX3 }}</td>
+                    <td>{{ item.KKC }}</td>
+                    <td>{{ item.SBC }}</td>
+                    <td>{{ item.JOIG }}</td>
+                    <td>{{ item.JOCG }}</td>
+                    <td>{{ item.JOSG }}</td>
+                    <td>{{ item.JOUG }}</td>
+                    <td>{{ item.CARP }}</td>
+                    <td>{{ item.EBELN }}</td>
+                    <td>{{ item.DEV_CHG }}</td>
+                    <td>{{ item.ZBAS }}</td>
+                    <td>{{ item.ZUDS }}</td>
+                    <td>{{ item.ZSPD }}</td>
+                    <td>{{ item.ZBDC }}</td>
+                    <td>{{ item.ZAMN }}</td>
+                    <td>{{ item.ZCAR }}</td>
+                    <td>{{ item.ZCAS }}</td>
+                    <td>{{ item.ZCLC }}</td>
+                    <td>{{ item.ZPEM }}</td>
+                    <td>{{ item.ZPLC }}</td>
+                    <td>{{ item.ZFRP }}</td>
+                    <td>{{ item.ZTAP }}</td>
+                    <td>{{ item.ZTEA }}</td>
+                    <td>{{ item.ZTRA }}</td>
+                    <td>{{ item.ZTRP }}</td>
+                    <td>{{ item.ZWCG }}</td>
+                    <td>{{ item.MAIN }}</td>
+                    <td>{{ item.MATKL }}</td>
+                    <td>{{ item.MVGR1 }}</td>
+                    <td>{{ item.MVGR2 }}</td>
+                    <td>{{ item.MVGR3 }}</td>
+                    <td>{{ item.WBS_M }}</td>
+                    <td>{{ item.LEG }}</td>
+                    <td>{{ item.COR }}</td>
+                    <td>{{ item.ADV }}</td>
+                    <td>{{ item.CAR }}</td>
+                    <td>{{ item.WAT }}</td>
+                    <td>{{ item.ELE }}</td>
+                    <td>{{ item.ELE1 }}</td>
+                    <td>{{ item.MOD }}</td>
+                    <td>{{ item.SO_VAL }}</td>
+                    <td>{{ item.AMT_INV }}</td>
+                    <td>{{ item.PER_INV }}</td>
+                    <td>{{ item.AMT_REC }}</td>
+                    <td>{{ item.BAL_AMT }}</td>
+                    <td>{{ item.KVGR2 }}</td>
+                    <td>{{ item.SOURCE_NAME }}</td>
+                    <td>{{ item.KVGR3 }}</td>
+                    <td>{{ item.KVGR5 }}</td>
+                    <td>{{ item.BSTDK }}</td>
+                    <td>{{ item.CPAN }}</td>
+                    <td>{{ item.CPAR }}</td>
+                    <td>{{ item.COA }}</td>
+                    <td>{{ item.COPAN }}</td>
+                    <td>{{ item.BANKA }}</td>
+                    <td>{{ item.CHANNEL }}</td>
+                    <td>{{ item.NETWR }}</td>
+                    <td>{{ item.LOAN_NUM }}</td>
+                    <td>{{ item.SAN_DATE }}</td>
+                    <td>{{ item.AD }}</td>
+                    <td>{{ item.RD }}</td>
+                    <td>{{ item.HD }}</td>
+                    <td>{{ item.SDN }}</td>
+                    <td>{{ item.AADHAR }}</td>
+                    <!-- <td>{{ item.}}</td> -->
+                    <td>{{ item.BOOKING }}</td>
+                    <td>{{ item.AGR_SALE }}</td>
+                    <td>{{ item.SALE_DEED }}</td>
+                    <td>{{ item.AOD }}</td>
+                    <td>{{ item.HAN_POS }}</td>
+                    <td>{{ item.CIP }}</td>
+                    <td>{{ item.SALE_DEED_ACK }}</td>
+                    <td>{{ item.TPT_NOC }}</td>
+                    <td>{{ item.SANCTION }}</td>
+                    <td>{{ item.LOAN_APP }}</td>
+                    <td>{{ item.INT_PAY }}</td>
+                    <td>{{ item.TRAN_FEE }}</td>
+                    <td>{{ item.CANC_CHRG }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div *ngIf="isFilterVisible">
+            <div
+              *ngIf="filteredSalesData.length"
+              style="
+                max-height: 400px;
+                overflow-y: auto;
+                overflow-x: auto;
+                display: hidden;
+              "
+            >
+              <table class="table table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th>Sales Order</th>
+                    <th>Sales Office</th>
+                    <th>Sales Office Name</th>
+                    <th></th>
+                    <th>Sales Document Type</th>
+                    <th>Document Date</th>
+                    <th>Created Date</th>
+                    <th>Pricing Date</th>
+                    <th>Customer Code</th>
+                    <th>Customer Name</th>
+                    <th>Reason for Rejection</th>
+                    <th>Material</th>
+                    <th>Unit Area</th>
+                    <th>UOM</th>
+                    <th>Sales Group</th>
+                    <th>Sales Group Name</th>
+                    <th>Sales Executive</th>
+                    <th>Service Tax</th>
+                    <th>VAT</th>
+                    <th>TDS</th>
+                    <th>KKC</th>
+                    <th>SBC</th>
+                    <th>IGST</th>
+                    <th>CGST</th>
+                    <th>SGST</th>
+                    <th>UGST</th>
+                    <th>Car Parking No.</th>
+                    <th>PO Number</th>
+                    <th>Development Charges</th>
+                    <th>Base Price</th>
+                    <th>UDS Value</th>
+                    <th>Special Discount</th>
+                    <th>Base Price (Db/Cr)</th>
+                    <th>Amenities</th>
+                    <th>Free Car Parking</th>
+                    <th>Base Cancellation</th>
+                    <th>Club House</th>
+                    <th>Pre-EMI</th>
+                    <th>PLC Value</th>
+                    <th>Floor Rise</th>
+                    <th>Terrace Area Premium</th>
+                    <th>Terrace View Premium</th>
+                    <th>Transfer Charges (De)</th>
+                    <th>Transfer Charges (Ad)</th>
+                    <th>Water Charges</th>
+                    <th>Main Material</th>
+                    <th>Material Group</th>
+                    <th>Material Group 1</th>
+                    <th>Material Group 2</th>
+                    <th>Material Group 3</th>
+                    <th>Main WBS Element</th>
+                    <th>Legal Charges</th>
+                    <th>Corpus Fund</th>
+                    <th>Adv. Maintenance</th>
+                    <th>Paid Car Parking</th>
+                    <th>Water Charges</th>
+                    <th>Electricity Charge</th>
+                    <th>Elec & Wat Charge</th>
+                    <th>Modifications</th>
+                    <th>SO Value</th>
+                    <th>Amount Invoiced</th>
+                    <th>% Amount Invoiced</th>
+                    <th>Amount Received</th>
+                    <th>Balance Amount</th>
+                    <th>Source of Booking</th>
+                    <th>Referer Name</th>
+                    <th>Schemes</th>
+                    <th>Sale Type</th>
+                    <th>Booking Date</th>
+                    <th>Customer PAN</th>
+                    <th>Channel Partner</th>
+                    <th>CO Applicant</th>
+                    <th>CO Applicant PAN</th>
+                    <th>Loan Bank</th>
+                    <th>Channel(Ramky DSA/Other)</th>
+                    <th>Sanctioned Amount</th>
+                    <th>Loan Number</th>
+                    <th>Sanctioned Date</th>
+                    <th>Agreement Date</th>
+                    <th>Registration Date</th>
+                    <th>Hand over Date</th>
+                    <th>Sale Deed No</th>
+                    <th>Aadhar No</th>
+                    <th>Booking From</th>
+                    <th>Agreement of Sale</th>
+                    <th>Sale Deed</th>
+                    <th>Any other Document</th>
+                    <th>Handover/Posession</th>
+                    <th>Customer ID Proofs</th>
+                    <th>Sale Deed ACK</th>
+                    <th>TPT & NOC</th>
+                    <th>Sanction</th>
+                    <th>Loan App</th>
+                    <th>Int. Delayed. Payment</th>
+                    <th>Transfer Fee</th>
+                    <th>Cancellation Charge</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of filteredSalesData">
+                    <td>{{ item.VBELN }}</td>
+                    <td>{{ item.VKBUR }}</td>
+                    <td>{{ item.BEZEI_S }}</td>
+                    <td>{{ item.ROWCL }}</td>
+                    <td>{{ item.AUART }}</td>
+                    <td>{{ item.AUDAT }}</td>
+                    <td>{{ item.ERDAT }}</td>
+                    <td>{{ item.PRSDT }}</td>
+                    <td>{{ item.KUNNR }}</td>
+                    <td>{{ item.NAME1 }}</td>
+                    <td>{{ item.REASON }}</td>
+                    <td>{{ item.MATNR }}</td>
+                    <td>{{ item.UMREN }}</td>
+                    <td>{{ item.UOM }}</td>
+                    <td>{{ item.VKGRP }}</td>
+                    <td>{{ item.BEZEI }}</td>
+                    <td>{{ item.SALE_EXE }}</td>
+                    <td>{{ item.TAX1 }}</td>
+                    <td>{{ item.TAX2 }}</td>
+                    <td>{{ item.TAX3 }}</td>
+                    <td>{{ item.KKC }}</td>
+                    <td>{{ item.SBC }}</td>
+                    <td>{{ item.JOIG }}</td>
+                    <td>{{ item.JOCG }}</td>
+                    <td>{{ item.JOSG }}</td>
+                    <td>{{ item.JOUG }}</td>
+                    <td>{{ item.CARP }}</td>
+                    <td>{{ item.EBELN }}</td>
+                    <td>{{ item.DEV_CHG }}</td>
+                    <td>{{ item.ZBAS }}</td>
+                    <td>{{ item.ZUDS }}</td>
+                    <td>{{ item.ZSPD }}</td>
+                    <td>{{ item.ZBDC }}</td>
+                    <td>{{ item.ZAMN }}</td>
+                    <td>{{ item.ZCAR }}</td>
+                    <td>{{ item.ZCAS }}</td>
+                    <td>{{ item.ZCLC }}</td>
+                    <td>{{ item.ZPEM }}</td>
+                    <td>{{ item.ZPLC }}</td>
+                    <td>{{ item.ZFRP }}</td>
+                    <td>{{ item.ZTAP }}</td>
+                    <td>{{ item.ZTEA }}</td>
+                    <td>{{ item.ZTRA }}</td>
+                    <td>{{ item.ZTRP }}</td>
+                    <td>{{ item.ZWCG }}</td>
+                    <td>{{ item.MAIN }}</td>
+                    <td>{{ item.MATKL }}</td>
+                    <td>{{ item.MVGR1 }}</td>
+                    <td>{{ item.MVGR2 }}</td>
+                    <td>{{ item.MVGR3 }}</td>
+                    <td>{{ item.WBS_M }}</td>
+                    <td>{{ item.LEG }}</td>
+                    <td>{{ item.COR }}</td>
+                    <td>{{ item.ADV }}</td>
+                    <td>{{ item.CAR }}</td>
+                    <td>{{ item.WAT }}</td>
+                    <td>{{ item.ELE }}</td>
+                    <td>{{ item.ELE1 }}</td>
+                    <td>{{ item.MOD }}</td>
+                    <td>{{ item.SO_VAL }}</td>
+                    <td>{{ item.AMT_INV }}</td>
+                    <td>{{ item.PER_INV }}</td>
+                    <td>{{ item.AMT_REC }}</td>
+                    <td>{{ item.BAL_AMT }}</td>
+                    <td>{{ item.KVGR2 }}</td>
+                    <td>{{ item.SOURCE_NAME }}</td>
+                    <td>{{ item.KVGR3 }}</td>
+                    <td>{{ item.KVGR5 }}</td>
+                    <td>{{ item.BSTDK }}</td>
+                    <td>{{ item.CPAN }}</td>
+                    <td>{{ item.CPAR }}</td>
+                    <td>{{ item.COA }}</td>
+                    <td>{{ item.COPAN }}</td>
+                    <td>{{ item.BANKA }}</td>
+                    <td>{{ item.CHANNEL }}</td>
+                    <td>{{ item.NETWR }}</td>
+                    <td>{{ item.LOAN_NUM }}</td>
+                    <td>{{ item.SAN_DATE }}</td>
+                    <td>{{ item.AD }}</td>
+                    <td>{{ item.RD }}</td>
+                    <td>{{ item.HD }}</td>
+                    <td>{{ item.SDN }}</td>
+                    <td>{{ item.AADHAR }}</td>
+                    <!-- <td>{{ item.}}</td> -->
+                    <td>{{ item.BOOKING }}</td>
+                    <td>{{ item.AGR_SALE }}</td>
+                    <td>{{ item.SALE_DEED }}</td>
+                    <td>{{ item.AOD }}</td>
+                    <td>{{ item.HAN_POS }}</td>
+                    <td>{{ item.CIP }}</td>
+                    <td>{{ item.SALE_DEED_ACK }}</td>
+                    <td>{{ item.TPT_NOC }}</td>
+                    <td>{{ item.SANCTION }}</td>
+                    <td>{{ item.LOAN_APP }}</td>
+                    <td>{{ item.INT_PAY }}</td>
+                    <td>{{ item.TRAN_FEE }}</td>
+                    <td>{{ item.CANC_CHRG }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Sales Chart -->
+          <div #graphSection></div>
+          <div *ngIf="currentChart === 'sales'">
+            <div class="row">
+              <h2>Sales Chart</h2>
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas id="salesChart" width="400" height="200"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas
+                      id="salesComparisionChart"
+                      width="400"
+                      height="200"
+                    ></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="currentChart === 'cancellations'">
+            <div class="row">
+              <h2>Cancellationshart</h2>
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas
+                      id="cancellationsChart"
+                      width="400"
+                      height="200"
+                    ></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas
+                      id="cancellationsComparisionChart"
+                      width="400"
+                      height="200"
+                    ></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="currentChart === 'saleType'">
+            <div class="row">
+              <h2>Sale type</h2>
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas
+                      id="saleTypeChart"
+                      width="400"
+                      height="200"
+                    ></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas id="salesComparisionChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="currentChart === 'bookingsource'">
+            <div class="row">
+              <h2>Booking Source Chart</h2>
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas
+                      id="bookingSourceChart"
+                      width="400"
+                      height="200"
+                    ></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas
+                      id="bookingSourceComparisonChart"
+                      width="400"
+                      height="200"
+                    ></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="currentChart === 'materialgroup'">
+            <div class="row">
+              <h2>materialgroup Chart</h2>
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas
+                      id="materialGroupChart"
+                      width="400"
+                      height="200"
+                    ></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas
+                      id="materialGroupComparisonChart"
+                      width="400"
+                      height="200"
+                    ></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="currentChart === 'area'">
+            <div class="row">
+              <h2>Area Chart</h2>
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas id="areaChart" width="400" height="200"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas
+                      id="areaComparisionChart"
+                      width="400"
+                      height="200"
+                    ></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="currentChart === 'materialgroup3'">
+            <div class="row">
+              <h2>Material group 3 Chart</h2>
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas
+                      id="materialGroup3Chart"
+                      width="400"
+                      height="200"
+                    ></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas
+                      id="salesComparisionChart"
+                      width="400"
+                      height="200"
+                    ></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="currentChart === 'performance'">
+            <div class="row">
+              <h2>Performance</h2>
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas
+                      id="performanceChart"
+                      width="400"
+                      height="200"
+                    ></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas
+                      id="performanceComparisionChart"
+                      width="400"
+                      height="200"
+                    ></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="currentChart === 'channel'">
+            <div class="row">
+              <h2>Channel Chart</h2>
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas id="channelChart" width="400" height="200"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div
+                    class="canvas-wrapper"
+                    style="
+                      width: 100%;
+                      max-width: 400px;
+                      height: 300px;
+                      margin: auto;
+                    "
+                  >
+                    <canvas
+                      id="salesComparisionChart"
+                      width="400"
+                      height="200"
+                    ></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="col-md-6 chart-container">
+              <div class="card">
+                <div class="canvas-wrapper">
+                  <p style="text-align: center">Hi there!</p>
+                </div>
+              </div>
+            </div> -->
+        </div>
+      </div>
+      <!-- </div> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<mat-tab-group>
+  <!-- KPI Tab -->
+  <mat-tab label="Top 5 Customers">
+    <div class="kpi-layout">
+      <div class="kpi-data-and-graph">
+        <!-- KPI Data Section (Table) -->
+        <div class="kpi-data">
+          <h4 class="title">Sales Data Table</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Sales Order</th>
+                <th>Sales Office</th>
+                <th>Document Date</th>
+                <th>Customer Name</th>
+                <th>Material</th>
+                <th>SO Value</th>
+                <th>Amount Invoiced</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let sale of salesData">
+                <td>{{ sale["Sales Order"] }}</td>
+                <td>{{ sale["Sales Office"] }}</td>
+                <td>{{ sale["Document Date"] | date }}</td>
+                <td>{{ sale["Customer Name"] }}</td>
+                <td>{{ sale["Material"] }}</td>
+                <td>{{ sale["SO Value"] | currency }}</td>
+                <td>{{ sale["Amount Invoiced"] | currency }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- First Graph on the Right Side -->
+        <div class="kpi-graph-right">
+          <app-chart></app-chart>
+        </div>
+      </div>
+
+      <!-- Second Graph (Below the KPI Data) -->
+      <div class="kpi-graph-bottom">
+        <!-- <lbd-chart
+          [title]="'Line Chart'"
+          [subtitle]="'Your subtitle here'"
+          [chartClass]="'chart-class'"
+          [chartType]="lineChartType"
+          [chartData]="lineChartData"
+          [chartOptions]="lineChartOptions"
+          [legendItems]="lineLegendItems"
+          [footerIconClass]="'icon-class'"
+          [footerText]="'Footer text'"
+          [withHr]="true"
+        ></lbd-chart> -->
+      </div>
+    </div>
+  </mat-tab>
+
+  <!-- Additional Tabs -->
+  <mat-tab label="Material Group">
+    <!-- Forecast content -->
+  </mat-tab>
+  <mat-tab label="Sales"> </mat-tab>
+  <!-- Forecast content -->
+  <mat-tab label="Transactions">
+    <!-- Forecast content -->
+  </mat-tab>
+  <mat-tab label="Updates">
+    <!-- Forecast content -->
+  </mat-tab>
+  <mat-tab label="Material Qty"></mat-tab>
+  <!-- Forecast content -->
+  <mat-tab label="Finance">
+    <!-- Forecast content -->
+  </mat-tab>
+</mat-tab-group>

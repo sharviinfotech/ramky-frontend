@@ -1,0 +1,237 @@
+<!-- <div class="sidebar-wrapper">
+  <div class="logo">
+    <a href="http://www.creative-tim.com" class="simple-text">
+      <div class="logo-img">
+        <img src="/assets/img/logo.jpg" />
+      </div>
+      Sharvi INFOTECH
+    </a>
+  </div>
+  <ul class="nav responsive-nav">
+    <li *ngIf="isMobileMenu()">
+      <a class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-dashboard"></i>
+        <p class="hidden-lg hidden-md">Dashboard</p>
+      </a>
+    </li>
+    <li class="dropdown" *ngIf="isMobileMenu()">
+      <a class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-globe"></i>
+        <b class="caret hidden-sm hidden-xs"></b>
+        <span class="notification hidden-sm hidden-xs">5</span>
+        <p class="hidden-lg hidden-md">
+          5 Notifications
+          <b class="caret"></b>
+        </p>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Notification 1</a></li>
+        <li><a href="#">Notification 2</a></li>
+        <li><a href="#">Notification 3</a></li>
+        <li><a href="#">Notification 4</a></li>
+        <li><a href="#">Another notification</a></li>
+      </ul>
+    </li>
+    <li *ngIf="isMobileMenu()">
+      <a>
+        <i class="fa fa-search"></i>
+        <p class="hidden-lg hidden-md">Search</p>
+      </a>
+    </li>
+    <li *ngIf="isMobileMenu()">
+      <a href="">
+        <p>Account</p>
+      </a>
+    </li>
+    <li class="dropdown" *ngIf="isMobileMenu()">
+      <a class="dropdown-toggle" data-toggle="dropdown">
+        <p>
+          Dropdown
+          <b class="caret"></b>
+        </p>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </li>
+    <li *ngIf="isMobileMenu()">
+      <a>
+        <p>Log out</p>
+      </a>
+    </li>
+    <li class="separator hidden-lg hidden-md" *ngIf="isMobileMenu()"></li>
+    <li
+      routerLinkActive="active"
+      *ngFor="let menuItem of menuItems"
+      class="{{ menuItem.class }}"
+    >
+      <a [routerLink]="[menuItem.path]">
+        <i class="{{ menuItem.icon }}"></i>
+        <p>{{ menuItem.title }}</p>
+      </a>
+    </li>
+  </ul>
+</div> -->
+
+<div
+  class="sidebar-wrapper"
+  style="padding: 20px; background-color: rgb(0, 114, 206); color: white"
+>
+  <!-- Logo -->
+  <img
+    src="/assets/img/logo-new.png"
+    alt="sharvi infotech Logo"
+    style="max-width: 100%; height: auto; margin-bottom: 10px"
+  />
+
+  <!-- <div class="logo" style="text-align: center; margin-bottom: 20px">
+    <a href="#" class="simple-text" style="color: white; text-decoration: none">
+      Sharvi INFOTECH
+    </a>
+  </div> -->
+
+  <!-- Date Filter Section -->
+  <div class="date-picker">
+    <label style="display: block; margin-top: 10px; color: white" for="fromDate"
+      >From</label
+    >
+    <input
+      type="date"
+      id="fromDate"
+      [(ngModel)]="fromDate"
+      (ngModelChange)="onFromDateChange($event)"
+      class="form-control"
+    />
+
+    <label for="toDate" style="display: block; margin-top: 10px; color: white"
+      >To</label
+    >
+    <input
+      type="date"
+      id="toDate"
+      [ngModel]="toDate"
+      (ngModelChange)="onToDateChange($event)"
+      class="form-control"
+      style="width: 100%; padding: 8px; margin-bottom: 10px"
+    />
+  </div>
+  <div style="text-align: center; margin-top: 30px">
+    <img
+      src="/assets/img/ramky.png"
+      alt="ramky Logo"
+      style="max-width: 100%; height: auto; margin-bottom: 10px"
+    />
+  </div>
+
+  <!-- Quick Filters Section -->
+  <!-- <div class="filters" style="margin-top: 20px">
+    <button
+      class="btn btn-filter"
+      style="
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #0056b3;
+        color: white;
+        border: none;
+        cursor: pointer;
+      "
+    >
+      Last 7 Days
+    </button>
+    <button
+      class="btn btn-filter"
+      style="
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #0056b3;
+        color: white;
+        border: none;
+        cursor: pointer;
+      "
+    >
+      Last 30 Days
+    </button>
+    <button
+      class="btn btn-filter"
+      style="
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #0056b3;
+        color: white;
+        border: none;
+        cursor: pointer;
+      "
+    >
+      Last 90 Days
+    </button>
+  </div>
+
+  
+  <div class="day-buttons" style="margin-top: 20px">
+    <button
+      class="btn btn-day"
+      style="
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #1a73e8;
+        color: white;
+        border: none;
+        cursor: pointer;
+      "
+    >
+      Saturday
+    </button>
+    <button
+      class="btn btn-day"
+      style="
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #1a73e8;
+        color: white;
+        border: none;
+        cursor: pointer;
+      "
+    >
+      Sunday
+    </button>
+  </div> -->
+
+  <!-- Main Navigation Links -->
+  <!-- <ul class="nav responsive-nav" style="margin-top: 20px; padding: 0">
+    <li
+      routerLinkActive="active"
+      *ngFor="let menuItem of menuItems"
+      [ngClass]="menuItem.class"
+      style="list-style-type: none; margin-bottom: 10px"
+    >
+      <a
+        [routerLink]="[menuItem.path]"
+        style="
+          color: white;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+        "
+      >
+        <i class="{{ menuItem.icon }}" style="margin-right: 10px"></i>
+        <p style="margin: 0">{{ menuItem.title }}</p>
+      </a>
+    </li>
+  </ul> -->
+</div>

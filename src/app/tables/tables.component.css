@@ -1,0 +1,185 @@
+.table-wrapper {
+  position: relative;
+  max-height: 400px; /* Set your desired max height */
+  overflow: auto; /* Allow both horizontal and vertical scrolling */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.table-scrollable {
+  max-height: 100%; /* Set height to fill the container */
+  overflow-x: auto; /* Allow horizontal scrolling */
+  overflow-y: auto; /* Allow vertical scrolling */
+  display: block; /* Enable block layout for scrolling */
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+.table {
+  width: 100%; /* Ensure the table takes full width */
+  border-collapse: collapse; /* Collapse borders */
+}
+
+.table th {
+  font-weight: bold;
+  background-color: #007bff; /* Bold blue for header background */
+  color: white; /* White text for contrast */
+  padding: 12px 18px;
+  border-bottom: 2px solid #dee2e6;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 2; /* Ensure it stays above the table content */
+  text-transform: uppercase; /* Capitalize headers for a modern look */
+  letter-spacing: 0.05em; /* Slight spacing between letters */
+}
+
+.table td {
+  padding: 12px 18px;
+  white-space: nowrap;
+  border-bottom: 1px solid #e9ecef; /* Subtle border for cell separation */
+  color: #495057; /* Soft dark color for readability */
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f1f3f5; /* Light grey on row hover */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f8f9fa; /* Subtle alternating background for rows */
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+  background-color: #ffffff;
+}
+
+.table td, .table th {
+  transition: all 0.2s ease; /* Smooth transition for hover effects */
+}
+
+.table th:hover {
+  background-color: #0056b3; /* Slightly darker blue when hovering over header */
+}
+
+.table td:hover {
+  background-color: #e2e6ea; /* Light grey on cell hover */
+}
+
+.row {
+  margin-bottom: 20px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+}
+
+.chart-container {
+  padding: 15px;
+  border: 2px solid slategray;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.canvas-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive design for better display on mobile and tablet */
+@media (max-width: 768px) {
+  .row {
+    margin-bottom: 10px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+}
+
+.chart-container {
+  background-color: #2c2c2c; /* Dark background for contrast */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Add some padding */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Soft shadow */
+  margin: 20px; /* Space around the chart */
+}
+canvas {
+  width: 100% !important; /* Make canvas take full width */
+  height: auto !important; /* Maintain aspect ratio */
+}
+:root {
+  --primary-color: rgba(54, 162, 235, 0.5);
+  --primary-border-color: rgba(54, 162, 235, 1);
+  --secondary-color: rgba(255, 99, 132, 0.5);
+  --secondary-border-color: rgba(255, 99, 132, 1);
+  /* Add more colors as needed */
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Add some space between rows */
+}
+
+.form-row {
+  display: flex; /* Enables Flexbox */
+  justify-content: space-between; /* Distributes elements with space in-between */
+  flex-wrap: wrap; /* Wraps elements if screen size is too small */
+  gap: 20px; /* Adds space between elements */
+  padding: 10px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column; /* Labels and inputs are stacked vertically */
+  flex: 1; /* Allow each form field to take equal space */
+}
+
+.form-field label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-field input {
+  padding: 8px;
+  border: 1px solid #f88a0c;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 50%; /* Ensure the inputs take full width */
+}
+.form-field button {
+  background-color: #4CAF50; /* Green background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 8px 16px; /* Smaller padding */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Make it inline */
+  font-size: 14px; /* Smaller font size */
+  margin: 6px 2px; /* Reduced margin */
+  cursor: pointer; /* Pointer/hand icon on hover */
+  border-radius: 8px; /* Rounded corners */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
+
+.form-field button:hover {
+  background-color: #45a049; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+.form-field button:active {
+  background-color: #3e8e41; /* Even darker green when clicked */
+  transform: scale(0.98); /* Slightly shrink button on click */
+}
+
+
